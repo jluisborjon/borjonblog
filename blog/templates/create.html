@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- post a new article  -->
+{{ form.media }}
+<form action="{% url 'create_article' %}" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <!-- The button to submit the new post -->
+  <section class='button-section'>
+    <button type="submit" name="button">Create Article</button>
+  </section>
+</form>
+{% endblock content %}

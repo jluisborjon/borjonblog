@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- All the articles display for novels category  -->
+<section class='article-list'>
+  {% for article in articles %}
+  <article class="blog-article">
+    <h2 class='article-title'><a href="{% url 'spirituality_view' id=article.id category = 'Espiritualidad' %}">{{ article.title }}</a><span  class='byline'><br>by<br> {{ article.author }}</span></h2>
+  </article>
+  {% endfor %}
+</section>
+{% endblock content %}

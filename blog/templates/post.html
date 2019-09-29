@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if request.user == article.user %}
+<!-- Button to edit what you had filled out -->
+<section class='button-section'>
+  <button type="submit" name="button"><a href="{% url 'edit_blog_post' id=article.pk %}">Edit Article</a></button>
+</section>
+{% endif %}
+<!-- Fill out the form (Author), (Article), (Body) -->
+<div class="post-body">
+  <div class="post-header">
+  <h4 class="post-category">{{ article.category }}</h4>
+  <h2 class='post-title'>{{ article.title }}</h2>
+    {% load i18n %}
+    {% language 'es' %}
+    <h5 class="author-date">{{ article.author }}, {{ article.published_date|date:'' }}</h5>
+    {% endlanguage %}
+  </div>
+  <p class='post-article'>{{ article.body|safe }}</p>
+</div>
+<!-- home-link... to go back to homepage -->
+<div class="home-link-create">
+  <a class="a-link-create" href="{% url 'home' %}">INICIO</a>
+</div>
+
+{% endblock %}

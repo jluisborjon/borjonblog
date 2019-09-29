@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+{{ form.media }}
+<!-- Edit what you had filled out of the form; (Author), (Article), (Body) -->
+<form action="{% url 'edit_blog_post' article.pk %}" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" name="" value="Save">
+  <!-- Button to edit what you had filled out -->
+</form>
+{% endblock content %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- All articles for same category display -->
+<div>
+  {% for category in article %}
+  <h2 class="category">Categorias{{ Article.category }}</h2>
+  {% endfor %}
+  {% for article in articles %}
+  <section class='article-list'>
+    <article class="blog-article">
+      <!-- display article's category -->
+      <h4 class="category">{{ article.category }}</h4>
+      {% load i18n %}
+      {% language 'es' %}
+      <!-- display article's title -->
+      <h2 class='article-title'><a class='section-title' href="{% url 'blog_post' id=article.id %}">{{ article.title }}</a></h2>
+      <!-- display article's date on spanish -->
+      <h5 class="author-date">{{ article.author }}, {{ article.published_date|date:'' }}</h5>
+      {% endlanguage %}
+    </article>
+    {% endfor %}
+  </section>
+</div>
+{% endblock %}

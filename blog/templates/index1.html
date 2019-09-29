@@ -1,0 +1,77 @@
+{% extends 'base1.html' %}
+{% block content %}
+<!-- grid display for the last article posted, picture & category -->
+<div class="gallery">
+  <div class="gallery__item gallery__item--1">
+    <p class="ultima_re">Última <br> Reseña</p>
+  </div>
+  <div class="gallery__item gallery__item--2">
+    <section class=''>
+      {% for article in articles %}
+      <article class="">
+        <p class="ur_category">{{ article.category }}</p>
+        {% load i18n %}
+        {% language 'es' %}
+        <p class='article-title'><a class='ur-title' href="{% url 'blog_post' id=article.id %}">{{ article.title }}</a></p>
+        <p class="ur-a_date">{{ article.author }}, {{ article.published_date|date:'' }}</p>
+        {% endlanguage %}
+      </article>
+      {% endfor %}
+    </section>
+  </div>
+<!-- grid display for pictures & categories links -->
+ <figure class="gallery__item gallery__item--3">
+   <a class="agallery" href="{% url 'management_view' %}">Administración</a>
+   <img src="/static/images/admin.jpg" class="gallery__img" alt="Image 2">
+ </figure>
+ <figure class="gallery__item gallery__item--4">
+   <a class="agallery" href="{% url 'anecdotes_view' %}">Anécdotas</a>
+   <img src="/static/images/anecdotas.jpg" class="gallery__img" alt="Image 1">
+ </figure>
+ <figure class="gallery__item gallery__item--5">
+     <a class="agallery" id="spirituality" href="{% url 'spirituality_view' %}">Espiritualidad</a>
+   <img src="/static/images/esp.jpg" class="gallery__img" alt="Image 6">
+ </figure>
+ <figure class="gallery__item gallery__item--6">
+   <a class="agallery" href="{% url 'novels_view' %}">Novelas</a>
+   <img src="/static/images/novelas.jpg" class="gallery__img" alt="Image 4">
+ </figure>
+ <figure class="gallery__item gallery__item--7">
+   <a class="agallery" href="{% url 'health_view' %}">Para la Salud</a>
+   <img src="/static/images/salud.jpg" class="gallery__img" alt="Image 5">
+ </figure>
+ <figure class="gallery__item gallery__item--8">
+   <a class="agallery" href="{% url 'growth_view' %}">Superación Personal</a>
+   <img src="/static/images/superacion.jpg" class="gallery__img" alt="Image 3">
+ </figure>
+</div>
+<!-- grid display for contact information  -->
+ <div class="con_info">
+   <!-- contact information title -->
+   <h2 class="titutlo-contacto">Contáctanos</h2>
+   <!-- contact information email -->
+   <div class="contact">
+    <i class="glyphicon glyphicon-envelope"></i><span class="email">info@borjonblog.com</span>
+   </div>
+   <!-- social media & links  -->
+   <div class="social">
+    <!-- facebook -->
+    <a href="https://www.facebook.com/Borjon-Blog-107910403907577/" class="fa fa-facebook"></a>
+    <!-- instagram -->
+    <a href="https://www.instagram.com/borjonblog/" class="fa fa-instagram"></a>
+    <!-- twitter -->
+    <a href="https://twitter.com/borjonblog" class="fa fa-twitter"></a>
+   </div>
+   <!-- admin login  -->
+   <!-- for now the user just need authors to login -->
+   <div class="admin">
+     {% if request.user.is_authenticated %}
+     <a href="{% url 'logout' %}"> Cerrar Sesión</a>
+     <a href="{% url 'new_article_page' %}">Escribir Reseña</a>
+     {% else %}
+     <a class="login" href="{% url 'login' %}">Administrador</a>
+     {% endif %}
+   </div>
+ </div>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- login form only for administrator (for now)-->
+<!-- If needed add a Signup Form to the Website  to add users-->
+  <h2>Log In</h2>
+  <form action="{% url 'login' %}" method='POST'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Login">
+  </form>
+{% endblock %}
